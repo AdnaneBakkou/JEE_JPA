@@ -20,8 +20,8 @@ public class JpaG5Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //productRepository.save(new Product(null,"product 1",4200,3));
-        //productRepository.save(new Product(null,"product 2",8200,2));
+      //  productRepository.save(new Product(null,"product 1",4200,3));
+       // productRepository.save(new Product(null,"product 2",8200,2));
         //productRepository.save(new Product(null,"product 3",9800,1));
       List<Product> products =  productRepository.findAll();
       products.forEach(p->
@@ -36,5 +36,29 @@ public class JpaG5Application implements CommandLineRunner {
         {
             System.out.println(p.toString());
         });
+
+        System.out.println("*******************");
+        List<Product> d =  productRepository.search("%1%");
+        d.forEach(p->
+        {
+            System.out.println(p.toString());
+        });
+
+        System.out.println("*********************");
+        List<Product> l =  productRepository.findByPriceGreaterThan(5000);
+        l.forEach(p->
+        {
+            System.out.println(p.toString());
+        });
+
+
+        System.out.println("*********************");
+        List<Product> m =  productRepository.searchByPrice(5000.00);
+        m.forEach(p->
+        {
+            System.out.println(p.toString());
+        });
+
+
     }
 }
